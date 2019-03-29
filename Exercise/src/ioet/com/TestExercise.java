@@ -25,6 +25,4 @@ public class TestExercise {
 		boolean [][] dayJobAstrid=ex.fillJob("ASTRID");
 		Assert.assertEquals(85, ex.amountPay(dayJobAstrid,fillMatrizWeek).intValue());
 	}
-	
-
 }

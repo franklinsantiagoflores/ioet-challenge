@@ -156,5 +156,4 @@ public class Exercise {
 		}
 		return value;
 	}
-
 }
