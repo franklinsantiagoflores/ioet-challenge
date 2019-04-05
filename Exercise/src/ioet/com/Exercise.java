@@ -1,9 +1,13 @@
 package ioet.com;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class Exercise {
 	
 	/*
-	 Hi Franklin
+	Hi Franklin
 
 	We are happy that you are interested in being part of the company. As part of the recruitment 
 	process we would like you to solve a programming exercise to evaluate your skills and later we will 
@@ -89,8 +93,16 @@ public class Exercise {
 	This exercise should be completed within a week. If for some reason you are unable to finish on 
 	time, please let us know.
 	 */
+		
+	boolean [][]job= new boolean[7][24];
 	
-	private static Integer MO=0,TU=1,WE=2,TH=3,FR=4,SA=5,SU=6;
+	public boolean[][] getJob() {
+		return job;
+	}
+
+	public void setJob(boolean[][] job) {
+		this.job = job;
+	}
 
 	public double[][] fillMatrix() {
 		double[][] daysHours= new double[7][24];
@@ -113,37 +125,16 @@ public class Exercise {
 		}
 		return daysHours;
 	}
-	
-	public boolean [][] fillJob(String nameEmployed){
-		boolean [][]job= new boolean[7][24];
+
+	public void fillJob(String nameEmployed , String day){
+		String d;
+		Integer horaInicio=Integer.valueOf(day.substring(2, 4));
+		Integer horaFin=Integer.valueOf(day.substring(8, 10));
+		d=day.substring(0, 2);
 		
-		if(nameEmployed.equals("RENE")){
-			job[MO][10]=true;
-			job[MO][11]=true;
-			
-			job[TU][10]=true;
-			job[TU][11]=true;
-			
-			job[TH][01]=true;
-			job[TH][02]=true;
-			
-			job[SA][14]=true;
-			job[SA][15]=true;
-			job[SA][16]=true;
-			job[SA][17]=true;
-			
-			job[SU][20]=true;
-		}
-		if(nameEmployed.equals("ASTRID")){
-			job[MO][10]=true;
-			job[MO][11]=true;
-			
-			job[TH][12]=true;
-			job[TH][13]=true;
-			
-			job[SU][20]=true;
-		}
-		return job;
+		for (int i = horaInicio; i < horaFin; i++) {
+			job[DaysWeek.valueOf(d).getValueDay()][i]=true;
+		}		
 	}
 	
 	public Double amountPay(boolean [][] job,double[][]matrix){
@@ -156,4 +147,49 @@ public class Exercise {
 		}
 		return value;
 	}
+	
+	
+	public void uploadFile(){
+		File file = null;
+	    FileReader fr = null;
+	    BufferedReader br = null;
+
+      try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+         // hacer una lectura comoda (disponer del metodo readLine()).
+    	 file = new File ("/opt/documentFile.txt");
+         fr = new FileReader (file);
+         br = new BufferedReader(fr);
+
+         // Lectura del fichero
+         String line;
+         String name;
+         String var;
+         while((line=br.readLine())!=null){
+        	 name=line.split("=")[0];
+        	 var=line.split("=")[1];
+        	 for (String dia : var.split(",")) {
+        		 fillJob(name, dia);
+			}
+        	 double[][] matrix=fillMatrix();
+        	 System.out.println("Name Employed: "+name+" amount Pay: "+amountPay(job, matrix));
+        	 job=new boolean[7][24];
+         }
+      }
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         // En el finally cerramos el fichero, para asegurarnos
+         // que se cierra tanto si todo va bien como si salta 
+         // una excepcion.
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
+	}
+	
 }
