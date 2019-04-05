@@ -1,10 +1,10 @@
 # ioet-challenge
 
 El ejercicio se lo realizó en el lenguaje de programación JAVA, para que funcione necesitan descargarse el proyecto y 
-configurar el método uploadFile() ya que es necesario realizar la lectura del archivo txrt que solicita en el ejecicio con los 
+configurar el método uploadFile() ya que es necesario realizar la lectura del archivo txt que solicita en el ejecicio con los 
 nombres de los empleados y los horarios en que trabajan para luego calcular sus salarios.
 
-En el médoto uploadFile() se debe cambiar la dirección de donde se realiza la lectura en micaso como traba en linux es la siguiente.
+En el médoto uploadFile() se debe cambiar la dirección de donde se realiza la lectura en mi caso como se trataba en linux es la siguiente.
 file = new File ("/opt/documentFile.txt");
 esa línea debe ser cambiada con la dirección de donde se va ha realizar la lectura del archivo en mi caso de nombre:documentFile.txt.
 
