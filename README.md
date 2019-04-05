@@ -1,5 +1,5 @@
 # ioet-challenge
-ioet-challenge
+
 El ejercicio se lo realizó en el lenguaje de programación JAVA, parq ue funcione necesitan descargarse el proyecto y 
 configurar el método uploadFile() ya que es necesario realizar la lectura del archivo txrt que solicita en el ejecicio con los 
 nombres de los empleados y los horarios en que trabajan para luego calcular sus salarios.
